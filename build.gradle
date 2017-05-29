@@ -1,0 +1,41 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+        'com.amazonaws:aws-lambda-java-core:1.1.0',
+        'com.amazonaws:aws-lambda-java-events:1.1.0',
+        'com.amazonaws:aws-java-sdk-s3:1.11.98',
+        'com.amazonaws:aws-java-sdk-dynamodb:1.11.98',
+        'com.google.code.gson:gson:2.6.2',
+        'com.amazonaws:aws-java-sdk-api-gateway:1.10.32',        
+         'com.google.api-client:google-api-client:1.22.0',
+        'com.google.oauth-client:google-oauth-client-jetty:1.22.0',
+        'com.google.apis:google-api-services-calendar:v3-rev237-1.22.0',
+        'com.google.apis:google-api-services-plus:v1-rev505-1.22.0',
+        'com.rometools:rome:1.7.1',
+        'com.auth0:java-jwt:3.1.0',
+        'com.rometools:rome-fetcher:1.5.0',
+        'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0',
+        'com.amazonaws:aws-java-sdk-cloudsearch:1.9.6',
+        'org.apache.httpcomponents:fluent-hc:4.2',
+        'org.json:json:20090211',
+        'com.amazonaws:aws-java-sdk-bom:1.10.77',
+        'org.codehaus.jackson:jackson-mapper-asl:1.5.0'
+        
+               
+    )
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources              
+    into('lib') {
+        from configurations.runtime
+    }           
+}
+
+build.dependsOn buildZip
