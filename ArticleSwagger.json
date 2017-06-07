@@ -34,7 +34,7 @@
           "requestTemplates": {
             "application/json": "#set($allParams=$input.params())\r\n{\r\n  \"action\": \"ListArticle\"\r\n}"
           },
-          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:283401367630:function:Article/invocations",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{accoutnId}:function:Article/invocations",
           "passthroughBehavior": "when_no_templates",
           "httpMethod": "POST",
           "contentHandling": "CONVERT_TO_TEXT",
@@ -75,7 +75,7 @@
           "requestTemplates": {
             "application/json": "#set($allParams=$input.params())\r\n{\r\n  \"action\": \"CreateArticle\",\r\n  \"article\": $input.json('$')\r\n}"
           },
-          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:283401367630:function:Article/invocations",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{accountId}:function:Article/invocations",
           "passthroughBehavior": "when_no_templates",
           "httpMethod": "POST",
           "contentHandling": "CONVERT_TO_TEXT",
@@ -116,7 +116,7 @@
           "requestTemplates": {
             "application/json": "#set($allParams=$input.params())\r\n{\r\n  \"action\": \"fetchArticleDetails\",\r\n  \"id\": \"$input.params('articleid')\"\r\n}"
           },
-          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:283401367630:function:Article/invocations",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{accountId}:function:Article/invocations",
           "passthroughBehavior": "when_no_templates",
           "httpMethod": "POST",
           "contentHandling": "CONVERT_TO_TEXT",
@@ -163,7 +163,7 @@
           "requestTemplates": {
             "application/json": "#set($allParams=$input.params())\r\n{\r\n  \"action\": \"UpdateArticle\",\r\n  \"article\": $input.json('$'),\r\n  \"id\": \"$input.params('articleid')\"\r\n\r\n}"
           },
-          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:283401367630:function:Article/invocations",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{accountId}:function:Article/invocations",
           "passthroughBehavior": "when_no_templates",
           "httpMethod": "POST",
           "contentHandling": "CONVERT_TO_TEXT",
@@ -202,7 +202,7 @@
           "requestTemplates": {
             "application/json": "#set($allParams=$input.params())\r\n{\r\n  \"action\": \"DeleteArticle\",\r\n  \"id\": \"$input.params('articleid')\"\r\n}"
           },
-          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:283401367630:function:Article/invocations",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{accountId}:function:Article/invocations",
           "passthroughBehavior": "when_no_templates",
           "httpMethod": "POST",
           "contentHandling": "CONVERT_TO_TEXT",

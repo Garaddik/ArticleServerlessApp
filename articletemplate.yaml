@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS SAM template with API defined in an external Swagger file along with Lambda and Table Creation
+
+Resources:
+   
+   Article:                   
+     Type: AWS::Serverless::SimpleTable
+     Properties:
+       PrimaryKey:
+         Name: id
+         Type: String
+       ProvisionedThroughput:
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
+    
+   ArticleAPIs:
+    Type: AWS::Serverless::Api
+    Properties:
+      DefinitionUri: ./ArticleSwagger.json
+      StageName: QA
+      Variables:
+        # NOTE: Before using this template, replace the <<region>> and <<account>> fields
+        #       in Lambda integration URI in the swagger file to region and accountId 
+        #       you are deploying to
+        ProjectFunctionName: !Ref LambdaArticle
+        
+   LambdaArticle:
+        Type: AWS::Serverless::Function
+        Properties:
+          CodeUri: ./article.zip
+          Handler: com.mk.handler.ArticleHandler
+          FunctionName: Article
+          Runtime: java8
+          Description: Article CRUD Operations
+          MemorySize: 128
+          Timeout: 60
+          Policies: AWSLambdaFullAccess      
+    

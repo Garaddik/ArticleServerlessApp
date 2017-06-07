@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM template with API defined in an external Swagger file along with
+  Lambda and Table Creation
+Resources:
+  Article:
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    Type: AWS::Serverless::SimpleTable
+  ArticleAPIs:
+    Properties:
+      DefinitionUri: s3://articleresource/dd1ff9ddd716df27187874b536a5cd5c
+      StageName: QA
+      Variables:
+        ProjectFunctionName:
+          Ref: LambdaArticle
+    Type: AWS::Serverless::Api
+  LambdaArticle:
+    Properties:
+      CodeUri: s3://articleresource/b424a6ed2918fd3dcc4b81af16c5622c
+      Description: Article CRUD Operations
+      FunctionName: Article
+      Handler: com.mk.handler.ArticleHandler
+      MemorySize: 128
+      Policies: AWSLambdaFullAccess
+      Runtime: java8
+      Timeout: 60
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
