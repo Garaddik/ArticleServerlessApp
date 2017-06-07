@@ -13,7 +13,7 @@ Resources:
     Type: AWS::Serverless::SimpleTable
   ArticleAPIs:
     Properties:
-      DefinitionUri: s3://articleresource/dd1ff9ddd716df27187874b536a5cd5c
+      DefinitionUri: s3://articleresource/98e3d6741ca42d8d15b14a3d7002e7d4
       StageName: QA
       Variables:
         ProjectFunctionName:
